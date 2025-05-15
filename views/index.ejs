@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista użytkowników</title>
+</head>
+<body>
+  <h1>Dodaj użytkownika</h1>
+  <form action="/dodaj" method="POST">
+    <label>Imię: <input type="text" name="imie" required></label><br>
+    <label>Nazwisko: <input type="text" name="nazwisko" required></label><br>
+    <button type="submit">Zapisz</button>
+  </form>
+
+  <h2>Aktualny czas (CEST): <%= currentTime %></h2>
+
+  <h2>Lista użytkowników</h2>
+  <table border="1" cellpadding="5">
+    <tr>
+      <th>ID</th>
+      <th>Imię</th>
+      <th>Nazwisko</th>
+      <th>Data i czas</th>
+      <th>Akcje</th>
+    </tr>
+    <% users.forEach(user => { %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.imie %></td>
+        <td><%= user.nazwisko %></td>
+        <td><%= new Date(user.czas).toLocaleString('pl-PL', { timeZone: 'Europe/Warsaw' }) %></td>
+        <td>
+          <form action="/usun/<%= user.id %>" method="POST" style="display:inline;">
+            <button type="submit">Usuń</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>

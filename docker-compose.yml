@@ -1,0 +1,25 @@
+services:
+  app:
+    build: .
+    container_name: node-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    volumes:
+      - ./app:/usr/src/app
+    working_dir: /app
+    command: npm start
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: myapp
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
