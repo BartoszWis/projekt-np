@@ -71,5 +71,6 @@ app.post('/usun/:id', (req, res) => {
 });
 
 app.listen(3000, function() {
-  console.log('Aplikacja działa na http://localhost:${3000}');
+  console.log('Aplikacja działa na http://localhost:3000');
+  console.log('Dostep do aplikacji przez aplikacja.local');
 });
